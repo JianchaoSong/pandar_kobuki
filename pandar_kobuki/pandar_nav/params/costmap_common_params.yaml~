@@ -1,0 +1,9 @@
+max_obstacle_height: 0.8 
+obstacle_range: 3.0
+raytrace_range: 3.0
+robot_radius: 0.35
+inflation_radius:     0.6  # max. distance from an obstacle at which costs are incurred for planning paths.
+
+observation_sources: sick_tim
+sick_tim: {sensor_frame: laser, data_type: LaserScan, topic: scan, marking: true, clearing: true}
+footprint: [[0.3, 0.2], [0.3, -0.2], [-0.4, -0.2], [-0.4, 0.2]]  

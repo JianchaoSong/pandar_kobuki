@@ -1,0 +1,8 @@
+<launch>
+  <master auto="start"/>
+  <param name="/use_sim_time" value="false"/>
+  
+  <include file="$(find pandar_nav)/paramsExploration/slam_gmapping.xml"/>
+    
+  <include file="/home/hesai/pandar_ws/src/pandar_nav/launch/move_base_exploration.launch"/>
+</launch>

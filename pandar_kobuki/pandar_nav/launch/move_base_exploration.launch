@@ -1,0 +1,25 @@
+<launch>
+<master auto="start"/>
+<!--类似于rosrun tf static_transform_publisher 0.0 0.0 0.0 0.0 0.0 0.0 /base_link /laser 40-->
+<!--node pkg="tf" type="static_transform_publisher" name="base_link1_to_laser" args="0.15 0.0 0.0 0.0 0.0 0.0 /base_link1 /laser 40"/-->
+
+<!--node pkg="tf" type="static_transform_publisher" name="base_footprint_to_base_link1" args="0.0 0.0 0.5 0.0 0.0 0.0 /base_footprint /base_link1 40" /-->
+
+
+  <!--- Run AMCL In exploration does not need  -->
+  <!--include file="/home/hesai/pandar_ws/src/pandar_nav/launch/amcl.launch" /-->
+
+<node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+
+    <remap   from="/cmd_vel" to="mobile_base/commands/velocity" />
+
+    <rosparam file="$(find pandar_nav)/paramsExploration/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find pandar_nav)/paramsExploration/local_costmap_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find pandar_nav)/paramsExploration/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find pandar_nav)/paramsExploration/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find pandar_nav)/paramsExploration/base_local_planner_params.yaml" command="load" />
+    <rosparam file="$(find pandar_nav)/paramsExploration/global_planner_params.yaml" command="load" />
+    <rosparam file="$(find pandar_nav)/paramsExploration/move_base_params.yaml" command="load" />
+  </node>
+  
+</launch>
